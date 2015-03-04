@@ -1,0 +1,1608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RozlZEEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Asortyment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdGrupa" Type="int" />
+          <Property Name="JakaEnergia" Type="tinyint" />
+          <Property Name="StrefaCzasowa" Type="tinyint" />
+          <Property Name="StalyZmienny" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Cena">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSkladnikTaryfy" Type="int" Nullable="false" />
+          <Property Name="DataOd" Type="date" />
+          <Property Name="idStawkaVAT" Type="int" />
+          <Property Name="Cena" Type="money" />
+          <Property Name="CenaZima" Type="money" />
+        </EntityType>
+        <EntityType Name="JednostkaMiary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Licznik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPrzylacze" Type="int" />
+          <Property Name="NrFabryczny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Mnozna" Type="real" />
+          <Property Name="TypLicznika" Type="int" />
+          <Property Name="ProcentStrat" Type="real" />
+          <Property Name="Aktywny" Type="bit" Nullable="false" />
+          <Property Name="Kolejnosc" Type="tinyint" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Miasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="10" />
+          <Property Name="Konto" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="MocZamowiona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPrzylacze" Type="int" Nullable="false" />
+          <Property Name="Miesiac" Type="tinyint" Nullable="false" />
+          <Property Name="Rok" Type="tinyint" Nullable="false" />
+          <Property Name="Ilosc" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Obiekt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="10" />
+          <Property Name="Konto" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Odbiorca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NrOdbiorcy" Type="nchar" MaxLength="12" Nullable="false" />
+          <Property Name="Konto" Type="nchar" MaxLength="12" />
+          <Property Name="idObiekt" Type="int" />
+          <Property Name="idZaklad" Type="int" />
+          <Property Name="KodPocztowy" Type="nchar" MaxLength="6" />
+          <Property Name="idMiasto" Type="int" />
+          <Property Name="idUlica" Type="int" />
+          <Property Name="NrBudynku" Type="nchar" MaxLength="8" />
+          <Property Name="idTypOdbiorcy" Type="int" />
+          <Property Name="Aktywny" Type="bit" />
+          <Property Name="sNazwa" Type="nvarchar" MaxLength="100" />
+          <Property Name="sAdres" Type="nvarchar" MaxLength="50" />
+          <Property Name="sKod" Type="nvarchar" MaxLength="50" />
+          <Property Name="sMiasto" Type="nvarchar" MaxLength="50" />
+          <Property Name="sNIP" Type="nvarchar" MaxLength="15" />
+          <Property Name="sBank" Type="nvarchar" MaxLength="50" />
+          <Property Name="sNrRachunkuBankowego" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OdczytLicznika">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idLicznik" Type="int" Nullable="false" />
+          <Property Name="DataOdczytu" Type="date" Nullable="false" />
+          <Property Name="NrFabryczny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Stan" Type="real" Nullable="false" />
+          <Property Name="Zuzycie" Type="real" Nullable="false" />
+          <Property Name="PierwszyOdczyt" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OsrodekKosztow">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPrzylacze" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProcentKosztow" Type="real" Nullable="false" />
+          <Property Name="UdzialZuzycia" Type="real" Nullable="false" />
+          <Property Name="idRok" Type="int" Nullable="false" />
+          <Property Name="KontoKosztuStale" Type="nvarchar" MaxLength="50" />
+          <Property Name="KontoKosztuZmienne" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PozycjaZuzycia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAsortyment" Type="int" Nullable="false" />
+          <Property Name="idSkladnikTaryfy" Type="int" Nullable="false" />
+          <Property Name="idZuzycie" Type="int" Nullable="false" />
+          <Property Name="Ilosc" Type="real" />
+          <Property Name="JednostkaMiary" Type="nvarchar" MaxLength="8" />
+          <Property Name="Cena" Type="money" />
+          <Property Name="idStawkaVAT" Type="int" />
+          <Property Name="StawkaVAT" Type="money" />
+          <Property Name="KwotaNetto" Type="money" />
+          <Property Name="KwotaVAT" Type="money" />
+          <Property Name="KwotaBrutto" Type="money" />
+        </EntityType>
+        <EntityType Name="Przylacze">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOdbiorca" Type="int" Nullable="false" />
+          <Property Name="idTaryfa" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mnozna" Type="real" />
+          <Property Name="TangensFiZamowione" Type="real" />
+          <Property Name="MocMinimalna" Type="real" />
+          <Property Name="MocUmowna" Type="real" />
+          <Property Name="MocZainstalowana" Type="real" />
+          <Property Name="TypTaryfaEBP" Type="int" />
+          <Property Name="CzySumator" Type="bit" />
+          <Property Name="CzyStraty" Type="bit" />
+          <Property Name="Aktywne" Type="bit" />
+        </EntityType>
+        <EntityType Name="Rok">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numer" Type="int" Nullable="false" />
+          <Property Name="MaskaKosztu" Type="nvarchar" MaxLength="50" />
+          <Property Name="DomyslnyStaly" Type="nvarchar" MaxLength="50" />
+          <Property Name="DomyslnyZmienny" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SkladnikLicznika">
+          <Key>
+            <PropertyRef Name="idLicznik" />
+            <PropertyRef Name="idSkladnikTaryfy" />
+          </Key>
+          <Property Name="idLicznik" Type="int" Nullable="false" />
+          <Property Name="idSkladnikTaryfy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SkladnikTaryfy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTaryfa" Type="int" Nullable="false" />
+          <Property Name="idAsortyment" Type="int" Nullable="false" />
+          <Property Name="idJednostkaMiary" Type="int" Nullable="false" />
+          <Property Name="TypCeny" Type="tinyint" Nullable="false" />
+          <Property Name="BruttoNetto" Type="tinyint" Nullable="false" />
+          <Property Name="WyliczacKwoty" Type="bit" Nullable="false" />
+          <Property Name="KwotaZuzycia" Type="money" Nullable="false" />
+          <Property Name="StalaZmienna" Type="bit" Nullable="false" />
+          <Property Name="Kolejnosc" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="StawkaVAT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="Wartosc" Type="real" />
+        </EntityType>
+        <EntityType Name="Taryfa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+          <Property Name="IleCzlonow" Type="tinyint" />
+          <Property Name="IleStref" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TypOdbiorcy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ulica">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Konto" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Zaklad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Konto" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Zuzycie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPrzylacze" Type="int" Nullable="false" />
+          <Property Name="DataOdczytu" Type="date" Nullable="false" />
+          <Property Name="DoZaplatyNetto" Type="money" Nullable="false" />
+          <Property Name="DoZaplatyVAT" Type="money" Nullable="false" />
+          <Property Name="DoZaplatyBrutto" Type="money" Nullable="false" />
+          <Property Name="EnergiaCzynnaRazem" Type="real" />
+          <Property Name="EergiaBiernaPobranaRazem" Type="real" />
+          <Property Name="EnergiaBiernaOddanaRazem" Type="real" />
+          <Property Name="ZwrotyBonifikaty" Type="money" />
+          <Property Name="Zaliczka" Type="money" />
+          <Property Name="CzasMocyMaksymalnej" Type="real" />
+          <Property Name="CenaSrednia" Type="money" />
+          <Property Name="TangensFi" Type="real" />
+          <Property Name="PowodKorekty" Type="nvarchar" MaxLength="500" />
+          <Property Name="CzyKorekta" Type="bit" />
+          <Property Name="DataKorekty" Type="date" />
+          <Property Name="idTaryfa" Type="int" Nullable="false" />
+          <Property Name="NrFaktury" Type="nvarchar" MaxLength="50" />
+          <Property Name="NettoFaktury" Type="money" />
+          <Property Name="VATFaktury" Type="money" />
+          <Property Name="BruttoFaktury" Type="money" />
+        </EntityType>
+        <Association Name="FK_Cena_ToSkladnikTaryfy">
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="1" />
+          <End Role="Cena" Type="Self.Cena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkladnikTaryfy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cena">
+              <PropertyRef Name="idSkladnikTaryfy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cena_ToStawkaVAT">
+          <End Role="StawkaVAT" Type="Self.StawkaVAT" Multiplicity="0..1" />
+          <End Role="Cena" Type="Self.Cena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StawkaVAT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cena">
+              <PropertyRef Name="idStawkaVAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Licznik_ToPrzylacze">
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="0..1" />
+          <End Role="Licznik" Type="Self.Licznik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przylacze">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Licznik">
+              <PropertyRef Name="idPrzylacze" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MocZamowiona_ToPrzylacze">
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="1" />
+          <End Role="MocZamowiona" Type="Self.MocZamowiona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przylacze">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MocZamowiona">
+              <PropertyRef Name="idPrzylacze" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odbiorca_ToMiasto">
+          <End Role="Miasto" Type="Self.Miasto" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miasto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Odbiorca">
+              <PropertyRef Name="idMiasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odbiorca_ToObiekt">
+          <End Role="Obiekt" Type="Self.Obiekt" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obiekt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Odbiorca">
+              <PropertyRef Name="idObiekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odbiorca_ToTypOdbiorcy">
+          <End Role="TypOdbiorcy" Type="Self.TypOdbiorcy" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypOdbiorcy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Odbiorca">
+              <PropertyRef Name="idTypOdbiorcy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odbiorca_ToUlica">
+          <End Role="Ulica" Type="Self.Ulica" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ulica">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Odbiorca">
+              <PropertyRef Name="idUlica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odbiorca_ToZaklad">
+          <End Role="Zaklad" Type="Self.Zaklad" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaklad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Odbiorca">
+              <PropertyRef Name="idZaklad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OdczytLicznika_ToLicznik">
+          <End Role="Licznik" Type="Self.Licznik" Multiplicity="1" />
+          <End Role="OdczytLicznika" Type="Self.OdczytLicznika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Licznik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OdczytLicznika">
+              <PropertyRef Name="idLicznik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OsrodekKosztow_ToPrzylacze">
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="1" />
+          <End Role="OsrodekKosztow" Type="Self.OsrodekKosztow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przylacze">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OsrodekKosztow">
+              <PropertyRef Name="idPrzylacze" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OsrodekKosztow_ToRok">
+          <End Role="Rok" Type="Self.Rok" Multiplicity="1" />
+          <End Role="OsrodekKosztow" Type="Self.OsrodekKosztow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rok">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OsrodekKosztow">
+              <PropertyRef Name="idRok" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PozycjaZuzycia_ToAsortyment">
+          <End Role="Asortyment" Type="Self.Asortyment" Multiplicity="1" />
+          <End Role="PozycjaZuzycia" Type="Self.PozycjaZuzycia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asortyment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PozycjaZuzycia">
+              <PropertyRef Name="idAsortyment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PozycjaZuzycia_ToSkladnikTaryfy">
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="1" />
+          <End Role="PozycjaZuzycia" Type="Self.PozycjaZuzycia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkladnikTaryfy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PozycjaZuzycia">
+              <PropertyRef Name="idSkladnikTaryfy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PozycjaZuzycia_ToZuzycie">
+          <End Role="Zuzycie" Type="Self.Zuzycie" Multiplicity="1" />
+          <End Role="PozycjaZuzycia" Type="Self.PozycjaZuzycia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zuzycie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PozycjaZuzycia">
+              <PropertyRef Name="idZuzycie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Przylacze_ToOdbiorca">
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="1" />
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Odbiorca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Przylacze">
+              <PropertyRef Name="idOdbiorca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Przylacze_ToTaryfa">
+          <End Role="Taryfa" Type="Self.Taryfa" Multiplicity="1" />
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taryfa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Przylacze">
+              <PropertyRef Name="idTaryfa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkladnikLicznika_ToLicznik">
+          <End Role="Licznik" Type="Self.Licznik" Multiplicity="1" />
+          <End Role="SkladnikLicznika" Type="Self.SkladnikLicznika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Licznik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkladnikLicznika">
+              <PropertyRef Name="idLicznik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkladnikLicznika_ToSkladnikTaryfy">
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="1" />
+          <End Role="SkladnikLicznika" Type="Self.SkladnikLicznika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkladnikTaryfy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkladnikLicznika">
+              <PropertyRef Name="idSkladnikTaryfy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkladnikTaryfy_ToAsortyment">
+          <End Role="Asortyment" Type="Self.Asortyment" Multiplicity="1" />
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asortyment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkladnikTaryfy">
+              <PropertyRef Name="idAsortyment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkladnikTaryfy_ToJednostkaMiary">
+          <End Role="JednostkaMiary" Type="Self.JednostkaMiary" Multiplicity="1" />
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JednostkaMiary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkladnikTaryfy">
+              <PropertyRef Name="idJednostkaMiary" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkladnikTaryfy_ToTaryfa">
+          <End Role="Taryfa" Type="Self.Taryfa" Multiplicity="1" />
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taryfa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkladnikTaryfy">
+              <PropertyRef Name="idTaryfa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zuzycie_ToPrzylacze">
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="1" />
+          <End Role="Zuzycie" Type="Self.Zuzycie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przylacze">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zuzycie">
+              <PropertyRef Name="idPrzylacze" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zuzycie_ToTaryfa">
+          <End Role="Taryfa" Type="Self.Taryfa" Multiplicity="1" />
+          <End Role="Zuzycie" Type="Self.Zuzycie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taryfa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zuzycie">
+              <PropertyRef Name="idTaryfa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RozlZEEModelStoreContainer">
+          <EntitySet Name="Asortyment" EntityType="Self.Asortyment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cena" EntityType="Self.Cena" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JednostkaMiary" EntityType="Self.JednostkaMiary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Licznik" EntityType="Self.Licznik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Miasto" EntityType="Self.Miasto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MocZamowiona" EntityType="Self.MocZamowiona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Obiekt" EntityType="Self.Obiekt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Odbiorca" EntityType="Self.Odbiorca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdczytLicznika" EntityType="Self.OdczytLicznika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OsrodekKosztow" EntityType="Self.OsrodekKosztow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PozycjaZuzycia" EntityType="Self.PozycjaZuzycia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Przylacze" EntityType="Self.Przylacze" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rok" EntityType="Self.Rok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkladnikLicznika" EntityType="Self.SkladnikLicznika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkladnikTaryfy" EntityType="Self.SkladnikTaryfy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StawkaVAT" EntityType="Self.StawkaVAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Taryfa" EntityType="Self.Taryfa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypOdbiorcy" EntityType="Self.TypOdbiorcy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ulica" EntityType="Self.Ulica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zaklad" EntityType="Self.Zaklad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zuzycie" EntityType="Self.Zuzycie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cena_ToSkladnikTaryfy" Association="Self.FK_Cena_ToSkladnikTaryfy">
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+            <End Role="Cena" EntitySet="Cena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cena_ToStawkaVAT" Association="Self.FK_Cena_ToStawkaVAT">
+            <End Role="StawkaVAT" EntitySet="StawkaVAT" />
+            <End Role="Cena" EntitySet="Cena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Licznik_ToPrzylacze" Association="Self.FK_Licznik_ToPrzylacze">
+            <End Role="Przylacze" EntitySet="Przylacze" />
+            <End Role="Licznik" EntitySet="Licznik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MocZamowiona_ToPrzylacze" Association="Self.FK_MocZamowiona_ToPrzylacze">
+            <End Role="Przylacze" EntitySet="Przylacze" />
+            <End Role="MocZamowiona" EntitySet="MocZamowiona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToMiasto" Association="Self.FK_Odbiorca_ToMiasto">
+            <End Role="Miasto" EntitySet="Miasto" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToObiekt" Association="Self.FK_Odbiorca_ToObiekt">
+            <End Role="Obiekt" EntitySet="Obiekt" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToTypOdbiorcy" Association="Self.FK_Odbiorca_ToTypOdbiorcy">
+            <End Role="TypOdbiorcy" EntitySet="TypOdbiorcy" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToUlica" Association="Self.FK_Odbiorca_ToUlica">
+            <End Role="Ulica" EntitySet="Ulica" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToZaklad" Association="Self.FK_Odbiorca_ToZaklad">
+            <End Role="Zaklad" EntitySet="Zaklad" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OdczytLicznika_ToLicznik" Association="Self.FK_OdczytLicznika_ToLicznik">
+            <End Role="Licznik" EntitySet="Licznik" />
+            <End Role="OdczytLicznika" EntitySet="OdczytLicznika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OsrodekKosztow_ToPrzylacze" Association="Self.FK_OsrodekKosztow_ToPrzylacze">
+            <End Role="Przylacze" EntitySet="Przylacze" />
+            <End Role="OsrodekKosztow" EntitySet="OsrodekKosztow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OsrodekKosztow_ToRok" Association="Self.FK_OsrodekKosztow_ToRok">
+            <End Role="Rok" EntitySet="Rok" />
+            <End Role="OsrodekKosztow" EntitySet="OsrodekKosztow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaZuzycia_ToAsortyment" Association="Self.FK_PozycjaZuzycia_ToAsortyment">
+            <End Role="Asortyment" EntitySet="Asortyment" />
+            <End Role="PozycjaZuzycia" EntitySet="PozycjaZuzycia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaZuzycia_ToSkladnikTaryfy" Association="Self.FK_PozycjaZuzycia_ToSkladnikTaryfy">
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+            <End Role="PozycjaZuzycia" EntitySet="PozycjaZuzycia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaZuzycia_ToZuzycie" Association="Self.FK_PozycjaZuzycia_ToZuzycie">
+            <End Role="Zuzycie" EntitySet="Zuzycie" />
+            <End Role="PozycjaZuzycia" EntitySet="PozycjaZuzycia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Przylacze_ToOdbiorca" Association="Self.FK_Przylacze_ToOdbiorca">
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+            <End Role="Przylacze" EntitySet="Przylacze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Przylacze_ToTaryfa" Association="Self.FK_Przylacze_ToTaryfa">
+            <End Role="Taryfa" EntitySet="Taryfa" />
+            <End Role="Przylacze" EntitySet="Przylacze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkladnikLicznika_ToLicznik" Association="Self.FK_SkladnikLicznika_ToLicznik">
+            <End Role="Licznik" EntitySet="Licznik" />
+            <End Role="SkladnikLicznika" EntitySet="SkladnikLicznika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkladnikLicznika_ToSkladnikTaryfy" Association="Self.FK_SkladnikLicznika_ToSkladnikTaryfy">
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+            <End Role="SkladnikLicznika" EntitySet="SkladnikLicznika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkladnikTaryfy_ToAsortyment" Association="Self.FK_SkladnikTaryfy_ToAsortyment">
+            <End Role="Asortyment" EntitySet="Asortyment" />
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkladnikTaryfy_ToJednostkaMiary" Association="Self.FK_SkladnikTaryfy_ToJednostkaMiary">
+            <End Role="JednostkaMiary" EntitySet="JednostkaMiary" />
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkladnikTaryfy_ToTaryfa" Association="Self.FK_SkladnikTaryfy_ToTaryfa">
+            <End Role="Taryfa" EntitySet="Taryfa" />
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zuzycie_ToPrzylacze" Association="Self.FK_Zuzycie_ToPrzylacze">
+            <End Role="Przylacze" EntitySet="Przylacze" />
+            <End Role="Zuzycie" EntitySet="Zuzycie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zuzycie_ToTaryfa" Association="Self.FK_Zuzycie_ToTaryfa">
+            <End Role="Taryfa" EntitySet="Taryfa" />
+            <End Role="Zuzycie" EntitySet="Zuzycie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RozlZEEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Asortyment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdGrupa" Type="Int32" />
+          <Property Name="JakaEnergia" Type="Byte" />
+          <Property Name="StrefaCzasowa" Type="Byte" />
+          <Property Name="StalyZmienny" Type="Byte" />
+          <NavigationProperty Name="PozycjaZuzycia" Relationship="Self.FK_PozycjaZuzycia_ToAsortyment" FromRole="Asortyment" ToRole="PozycjaZuzycia" />
+          <NavigationProperty Name="SkladnikTaryfy" Relationship="Self.FK_SkladnikTaryfy_ToAsortyment" FromRole="Asortyment" ToRole="SkladnikTaryfy" />
+        </EntityType>
+        <EntityType Name="Cena">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataOd" Type="DateTime" Precision="0" />
+          <Property Name="Cena1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CenaZima" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="SkladnikTaryfy" Relationship="Self.FK_Cena_ToSkladnikTaryfy" FromRole="Cena" ToRole="SkladnikTaryfy" />
+          <NavigationProperty Name="StawkaVAT" Relationship="Self.FK_Cena_ToStawkaVAT" FromRole="Cena" ToRole="StawkaVAT" />
+        </EntityType>
+        <EntityType Name="JednostkaMiary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SkladnikTaryfy" Relationship="Self.FK_SkladnikTaryfy_ToJednostkaMiary" FromRole="JednostkaMiary" ToRole="SkladnikTaryfy" />
+        </EntityType>
+        <EntityType Name="Licznik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NrFabryczny" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Mnozna" Type="Single" />
+          <Property Name="TypLicznika" Type="Int32" />
+          <Property Name="ProcentStrat" Type="Single" />
+          <Property Name="Aktywny" Type="Boolean" Nullable="false" />
+          <Property Name="Kolejnosc" Type="Byte" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Przylacze" Relationship="Self.FK_Licznik_ToPrzylacze" FromRole="Licznik" ToRole="Przylacze" />
+          <NavigationProperty Name="OdczytLicznika" Relationship="Self.FK_OdczytLicznika_ToLicznik" FromRole="Licznik" ToRole="OdczytLicznika" />
+          <NavigationProperty Name="SkladnikTaryfy" Relationship="Self.SkladnikLicznika" FromRole="Licznik" ToRole="SkladnikTaryfy" />
+        </EntityType>
+        <EntityType Name="Miasto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Konto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MocZamowiona">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Miesiac" Type="Byte" Nullable="false" />
+          <Property Name="Rok" Type="Byte" Nullable="false" />
+          <Property Name="Ilosc" Type="Single" Nullable="false" />
+          <NavigationProperty Name="Przylacze" Relationship="Self.FK_MocZamowiona_ToPrzylacze" FromRole="MocZamowiona" ToRole="Przylacze" />
+        </EntityType>
+        <EntityType Name="Obiekt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Konto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Odbiorca" Relationship="Self.FK_Odbiorca_ToObiekt" FromRole="Obiekt" ToRole="Odbiorca" />
+        </EntityType>
+        <EntityType Name="Odbiorca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NrOdbiorcy" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Konto" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="NrBudynku" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="Aktywny" Type="Boolean" />
+          <Property Name="sNazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sAdres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sKod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sMiasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sNIP" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="sBank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sNrRachunkuBankowego" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Miasto" Relationship="Self.FK_Odbiorca_ToMiasto" FromRole="Odbiorca" ToRole="Miasto" />
+          <NavigationProperty Name="Obiekt" Relationship="Self.FK_Odbiorca_ToObiekt" FromRole="Odbiorca" ToRole="Obiekt" />
+          <NavigationProperty Name="TypOdbiorcy" Relationship="Self.FK_Odbiorca_ToTypOdbiorcy" FromRole="Odbiorca" ToRole="TypOdbiorcy" />
+          <NavigationProperty Name="Ulica" Relationship="Self.FK_Odbiorca_ToUlica" FromRole="Odbiorca" ToRole="Ulica" />
+          <NavigationProperty Name="Zaklad" Relationship="Self.FK_Odbiorca_ToZaklad" FromRole="Odbiorca" ToRole="Zaklad" />
+          <NavigationProperty Name="Przylacze" Relationship="Self.FK_Przylacze_ToOdbiorca" FromRole="Odbiorca" ToRole="Przylacze" />
+        </EntityType>
+        <EntityType Name="OdczytLicznika">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataOdczytu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NrFabryczny" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Stan" Type="Single" Nullable="false" />
+          <Property Name="Zuzycie" Type="Single" Nullable="false" />
+          <Property Name="PierwszyOdczyt" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Licznik" Relationship="Self.FK_OdczytLicznika_ToLicznik" FromRole="OdczytLicznika" ToRole="Licznik" />
+        </EntityType>
+        <EntityType Name="OsrodekKosztow">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProcentKosztow" Type="Single" Nullable="false" />
+          <Property Name="UdzialZuzycia" Type="Single" Nullable="false" />
+          <Property Name="KontoKosztuStale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KontoKosztuZmienne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Przylacze" Relationship="Self.FK_OsrodekKosztow_ToPrzylacze" FromRole="OsrodekKosztow" ToRole="Przylacze" />
+          <NavigationProperty Name="Rok" Relationship="Self.FK_OsrodekKosztow_ToRok" FromRole="OsrodekKosztow" ToRole="Rok" />
+        </EntityType>
+        <EntityType Name="PozycjaZuzycia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ilosc" Type="Single" />
+          <Property Name="JednostkaMiary" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="idStawkaVAT" Type="Int32" />
+          <Property Name="StawkaVAT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="KwotaNetto" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="KwotaVAT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="KwotaBrutto" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Asortyment" Relationship="Self.FK_PozycjaZuzycia_ToAsortyment" FromRole="PozycjaZuzycia" ToRole="Asortyment" />
+          <NavigationProperty Name="SkladnikTaryfy" Relationship="Self.FK_PozycjaZuzycia_ToSkladnikTaryfy" FromRole="PozycjaZuzycia" ToRole="SkladnikTaryfy" />
+          <NavigationProperty Name="Zuzycie" Relationship="Self.FK_PozycjaZuzycia_ToZuzycie" FromRole="PozycjaZuzycia" ToRole="Zuzycie" />
+        </EntityType>
+        <EntityType Name="Przylacze">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mnozna" Type="Single" />
+          <Property Name="TangensFiZamowione" Type="Single" />
+          <Property Name="MocMinimalna" Type="Single" />
+          <Property Name="MocUmowna" Type="Single" />
+          <Property Name="MocZainstalowana" Type="Single" />
+          <Property Name="TypTaryfaEBP" Type="Int32" />
+          <Property Name="CzySumator" Type="Boolean" />
+          <Property Name="CzyStraty" Type="Boolean" />
+          <Property Name="Aktywne" Type="Boolean" />
+          <NavigationProperty Name="Licznik" Relationship="Self.FK_Licznik_ToPrzylacze" FromRole="Przylacze" ToRole="Licznik" />
+          <NavigationProperty Name="MocZamowiona" Relationship="Self.FK_MocZamowiona_ToPrzylacze" FromRole="Przylacze" ToRole="MocZamowiona" />
+          <NavigationProperty Name="Odbiorca" Relationship="Self.FK_Przylacze_ToOdbiorca" FromRole="Przylacze" ToRole="Odbiorca" />
+          <NavigationProperty Name="OsrodekKosztow" Relationship="Self.FK_OsrodekKosztow_ToPrzylacze" FromRole="Przylacze" ToRole="OsrodekKosztow" />
+          <NavigationProperty Name="Taryfa" Relationship="Self.FK_Przylacze_ToTaryfa" FromRole="Przylacze" ToRole="Taryfa" />
+          <NavigationProperty Name="Zuzycie" Relationship="Self.FK_Zuzycie_ToPrzylacze" FromRole="Przylacze" ToRole="Zuzycie" />
+        </EntityType>
+        <EntityType Name="Rok">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numer" Type="Int32" Nullable="false" />
+          <Property Name="MaskaKosztu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DomyslnyStaly" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DomyslnyZmienny" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OsrodekKosztow" Relationship="Self.FK_OsrodekKosztow_ToRok" FromRole="Rok" ToRole="OsrodekKosztow" />
+        </EntityType>
+        <EntityType Name="SkladnikTaryfy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypCeny" Type="Byte" Nullable="false" />
+          <Property Name="BruttoNetto" Type="Byte" Nullable="false" />
+          <Property Name="WyliczacKwoty" Type="Boolean" Nullable="false" />
+          <Property Name="KwotaZuzycia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="StalaZmienna" Type="Boolean" Nullable="false" />
+          <Property Name="Kolejnosc" Type="Byte" />
+          <NavigationProperty Name="Asortyment" Relationship="Self.FK_SkladnikTaryfy_ToAsortyment" FromRole="SkladnikTaryfy" ToRole="Asortyment" />
+          <NavigationProperty Name="Cena" Relationship="Self.FK_Cena_ToSkladnikTaryfy" FromRole="SkladnikTaryfy" ToRole="Cena" />
+          <NavigationProperty Name="JednostkaMiary" Relationship="Self.FK_SkladnikTaryfy_ToJednostkaMiary" FromRole="SkladnikTaryfy" ToRole="JednostkaMiary" />
+          <NavigationProperty Name="PozycjaZuzycia" Relationship="Self.FK_PozycjaZuzycia_ToSkladnikTaryfy" FromRole="SkladnikTaryfy" ToRole="PozycjaZuzycia" />
+          <NavigationProperty Name="Taryfa" Relationship="Self.FK_SkladnikTaryfy_ToTaryfa" FromRole="SkladnikTaryfy" ToRole="Taryfa" />
+          <NavigationProperty Name="Licznik" Relationship="Self.SkladnikLicznika" FromRole="SkladnikTaryfy" ToRole="Licznik" />
+        </EntityType>
+        <EntityType Name="StawkaVAT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kod" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Wartosc" Type="Single" />
+        </EntityType>
+        <EntityType Name="Taryfa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Symbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IleCzlonow" Type="Byte" />
+          <Property Name="IleStref" Type="Byte" />
+          <NavigationProperty Name="Przylacze" Relationship="Self.FK_Przylacze_ToTaryfa" FromRole="Taryfa" ToRole="Przylacze" />
+          <NavigationProperty Name="SkladnikTaryfy" Relationship="Self.FK_SkladnikTaryfy_ToTaryfa" FromRole="Taryfa" ToRole="SkladnikTaryfy" />
+          <NavigationProperty Name="Zuzycie" Relationship="Self.FK_Zuzycie_ToTaryfa" FromRole="Taryfa" ToRole="Zuzycie" />
+        </EntityType>
+        <EntityType Name="TypOdbiorcy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Odbiorca" Relationship="Self.FK_Odbiorca_ToTypOdbiorcy" FromRole="TypOdbiorcy" ToRole="Odbiorca" />
+        </EntityType>
+        <EntityType Name="Ulica">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Konto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Odbiorca" Relationship="Self.FK_Odbiorca_ToUlica" FromRole="Ulica" ToRole="Odbiorca" />
+        </EntityType>
+        <EntityType Name="Zaklad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Konto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Odbiorca" Relationship="Self.FK_Odbiorca_ToZaklad" FromRole="Zaklad" ToRole="Odbiorca" />
+        </EntityType>
+        <EntityType Name="Zuzycie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataOdczytu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DoZaplatyNetto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DoZaplatyVAT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DoZaplatyBrutto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="EnergiaCzynnaRazem" Type="Single" />
+          <Property Name="EergiaBiernaPobranaRazem" Type="Single" />
+          <Property Name="EnergiaBiernaOddanaRazem" Type="Single" />
+          <Property Name="ZwrotyBonifikaty" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Zaliczka" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CzasMocyMaksymalnej" Type="Single" />
+          <Property Name="CenaSrednia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TangensFi" Type="Single" />
+          <Property Name="PowodKorekty" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CzyKorekta" Type="Boolean" />
+          <Property Name="DataKorekty" Type="DateTime" Precision="0" />
+          <Property Name="NrFaktury" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NettoFaktury" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="VATFaktury" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BruttoFaktury" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Przylacze" Relationship="Self.FK_Zuzycie_ToPrzylacze" FromRole="Zuzycie" ToRole="Przylacze" />
+          <NavigationProperty Name="Taryfa" Relationship="Self.FK_Zuzycie_ToTaryfa" FromRole="Zuzycie" ToRole="Taryfa" />
+        </EntityType>
+        <Association Name="FK_PozycjaZuzycia_ToAsortyment">
+          <End Role="Asortyment" Type="Self.Asortyment" Multiplicity="1" />
+          <End Role="PozycjaZuzycia" Type="Self.PozycjaZuzycia" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_SkladnikTaryfy_ToAsortyment">
+          <End Role="Asortyment" Type="Self.Asortyment" Multiplicity="1" />
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Cena_ToSkladnikTaryfy">
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="1" />
+          <End Role="Cena" Type="Self.Cena" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Cena_ToStawkaVAT">
+          <End Role="StawkaVAT" Type="Self.StawkaVAT" Multiplicity="0..1" />
+          <End Role="Cena" Type="Self.Cena" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_SkladnikTaryfy_ToJednostkaMiary">
+          <End Role="JednostkaMiary" Type="Self.JednostkaMiary" Multiplicity="1" />
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Licznik_ToPrzylacze">
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="0..1" />
+          <End Role="Licznik" Type="Self.Licznik" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_OdczytLicznika_ToLicznik">
+          <End Role="Licznik" Type="Self.Licznik" Multiplicity="1" />
+          <End Role="OdczytLicznika" Type="Self.OdczytLicznika" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Odbiorca_ToMiasto">
+          <End Role="Miasto" Type="Self.Miasto" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_MocZamowiona_ToPrzylacze">
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="1" />
+          <End Role="MocZamowiona" Type="Self.MocZamowiona" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Odbiorca_ToObiekt">
+          <End Role="Obiekt" Type="Self.Obiekt" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Odbiorca_ToTypOdbiorcy">
+          <End Role="TypOdbiorcy" Type="Self.TypOdbiorcy" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Odbiorca_ToUlica">
+          <End Role="Ulica" Type="Self.Ulica" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Odbiorca_ToZaklad">
+          <End Role="Zaklad" Type="Self.Zaklad" Multiplicity="0..1" />
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Przylacze_ToOdbiorca">
+          <End Role="Odbiorca" Type="Self.Odbiorca" Multiplicity="1" />
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_OsrodekKosztow_ToPrzylacze">
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="1" />
+          <End Role="OsrodekKosztow" Type="Self.OsrodekKosztow" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_OsrodekKosztow_ToRok">
+          <End Role="Rok" Type="Self.Rok" Multiplicity="1" />
+          <End Role="OsrodekKosztow" Type="Self.OsrodekKosztow" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_PozycjaZuzycia_ToSkladnikTaryfy">
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="1" />
+          <End Role="PozycjaZuzycia" Type="Self.PozycjaZuzycia" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_PozycjaZuzycia_ToZuzycie">
+          <End Role="Zuzycie" Type="Self.Zuzycie" Multiplicity="1" />
+          <End Role="PozycjaZuzycia" Type="Self.PozycjaZuzycia" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Przylacze_ToTaryfa">
+          <End Role="Taryfa" Type="Self.Taryfa" Multiplicity="1" />
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Zuzycie_ToPrzylacze">
+          <End Role="Przylacze" Type="Self.Przylacze" Multiplicity="1" />
+          <End Role="Zuzycie" Type="Self.Zuzycie" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_SkladnikTaryfy_ToTaryfa">
+          <End Role="Taryfa" Type="Self.Taryfa" Multiplicity="1" />
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Zuzycie_ToTaryfa">
+          <End Role="Taryfa" Type="Self.Taryfa" Multiplicity="1" />
+          <End Role="Zuzycie" Type="Self.Zuzycie" Multiplicity="*" />
+        </Association>
+        <Association Name="SkladnikLicznika">
+          <End Role="Licznik" Type="Self.Licznik" Multiplicity="*" />
+          <End Role="SkladnikTaryfy" Type="Self.SkladnikTaryfy" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RozlZEEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Asortyment" EntityType="Self.Asortyment" />
+          <EntitySet Name="Cena" EntityType="Self.Cena" />
+          <EntitySet Name="JednostkaMiary" EntityType="Self.JednostkaMiary" />
+          <EntitySet Name="Licznik" EntityType="Self.Licznik" />
+          <EntitySet Name="Miasto" EntityType="Self.Miasto" />
+          <EntitySet Name="MocZamowiona" EntityType="Self.MocZamowiona" />
+          <EntitySet Name="Obiekt" EntityType="Self.Obiekt" />
+          <EntitySet Name="Odbiorca" EntityType="Self.Odbiorca" />
+          <EntitySet Name="OdczytLicznika" EntityType="Self.OdczytLicznika" />
+          <EntitySet Name="OsrodekKosztow" EntityType="Self.OsrodekKosztow" />
+          <EntitySet Name="PozycjaZuzycia" EntityType="Self.PozycjaZuzycia" />
+          <EntitySet Name="Przylacze" EntityType="Self.Przylacze" />
+          <EntitySet Name="Rok" EntityType="Self.Rok" />
+          <EntitySet Name="SkladnikTaryfy" EntityType="Self.SkladnikTaryfy" />
+          <EntitySet Name="StawkaVAT" EntityType="Self.StawkaVAT" />
+          <EntitySet Name="Taryfa" EntityType="Self.Taryfa" />
+          <EntitySet Name="TypOdbiorcy" EntityType="Self.TypOdbiorcy" />
+          <EntitySet Name="Ulica" EntityType="Self.Ulica" />
+          <EntitySet Name="Zaklad" EntityType="Self.Zaklad" />
+          <EntitySet Name="Zuzycie" EntityType="Self.Zuzycie" />
+          <AssociationSet Name="FK_PozycjaZuzycia_ToAsortyment" Association="Self.FK_PozycjaZuzycia_ToAsortyment">
+            <End Role="Asortyment" EntitySet="Asortyment" />
+            <End Role="PozycjaZuzycia" EntitySet="PozycjaZuzycia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkladnikTaryfy_ToAsortyment" Association="Self.FK_SkladnikTaryfy_ToAsortyment">
+            <End Role="Asortyment" EntitySet="Asortyment" />
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cena_ToSkladnikTaryfy" Association="Self.FK_Cena_ToSkladnikTaryfy">
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+            <End Role="Cena" EntitySet="Cena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cena_ToStawkaVAT" Association="Self.FK_Cena_ToStawkaVAT">
+            <End Role="StawkaVAT" EntitySet="StawkaVAT" />
+            <End Role="Cena" EntitySet="Cena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkladnikTaryfy_ToJednostkaMiary" Association="Self.FK_SkladnikTaryfy_ToJednostkaMiary">
+            <End Role="JednostkaMiary" EntitySet="JednostkaMiary" />
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Licznik_ToPrzylacze" Association="Self.FK_Licznik_ToPrzylacze">
+            <End Role="Przylacze" EntitySet="Przylacze" />
+            <End Role="Licznik" EntitySet="Licznik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OdczytLicznika_ToLicznik" Association="Self.FK_OdczytLicznika_ToLicznik">
+            <End Role="Licznik" EntitySet="Licznik" />
+            <End Role="OdczytLicznika" EntitySet="OdczytLicznika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToMiasto" Association="Self.FK_Odbiorca_ToMiasto">
+            <End Role="Miasto" EntitySet="Miasto" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MocZamowiona_ToPrzylacze" Association="Self.FK_MocZamowiona_ToPrzylacze">
+            <End Role="Przylacze" EntitySet="Przylacze" />
+            <End Role="MocZamowiona" EntitySet="MocZamowiona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToObiekt" Association="Self.FK_Odbiorca_ToObiekt">
+            <End Role="Obiekt" EntitySet="Obiekt" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToTypOdbiorcy" Association="Self.FK_Odbiorca_ToTypOdbiorcy">
+            <End Role="TypOdbiorcy" EntitySet="TypOdbiorcy" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToUlica" Association="Self.FK_Odbiorca_ToUlica">
+            <End Role="Ulica" EntitySet="Ulica" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odbiorca_ToZaklad" Association="Self.FK_Odbiorca_ToZaklad">
+            <End Role="Zaklad" EntitySet="Zaklad" />
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Przylacze_ToOdbiorca" Association="Self.FK_Przylacze_ToOdbiorca">
+            <End Role="Odbiorca" EntitySet="Odbiorca" />
+            <End Role="Przylacze" EntitySet="Przylacze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OsrodekKosztow_ToPrzylacze" Association="Self.FK_OsrodekKosztow_ToPrzylacze">
+            <End Role="Przylacze" EntitySet="Przylacze" />
+            <End Role="OsrodekKosztow" EntitySet="OsrodekKosztow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OsrodekKosztow_ToRok" Association="Self.FK_OsrodekKosztow_ToRok">
+            <End Role="Rok" EntitySet="Rok" />
+            <End Role="OsrodekKosztow" EntitySet="OsrodekKosztow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaZuzycia_ToSkladnikTaryfy" Association="Self.FK_PozycjaZuzycia_ToSkladnikTaryfy">
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+            <End Role="PozycjaZuzycia" EntitySet="PozycjaZuzycia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaZuzycia_ToZuzycie" Association="Self.FK_PozycjaZuzycia_ToZuzycie">
+            <End Role="Zuzycie" EntitySet="Zuzycie" />
+            <End Role="PozycjaZuzycia" EntitySet="PozycjaZuzycia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Przylacze_ToTaryfa" Association="Self.FK_Przylacze_ToTaryfa">
+            <End Role="Taryfa" EntitySet="Taryfa" />
+            <End Role="Przylacze" EntitySet="Przylacze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zuzycie_ToPrzylacze" Association="Self.FK_Zuzycie_ToPrzylacze">
+            <End Role="Przylacze" EntitySet="Przylacze" />
+            <End Role="Zuzycie" EntitySet="Zuzycie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkladnikTaryfy_ToTaryfa" Association="Self.FK_SkladnikTaryfy_ToTaryfa">
+            <End Role="Taryfa" EntitySet="Taryfa" />
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zuzycie_ToTaryfa" Association="Self.FK_Zuzycie_ToTaryfa">
+            <End Role="Taryfa" EntitySet="Taryfa" />
+            <End Role="Zuzycie" EntitySet="Zuzycie" />
+          </AssociationSet>
+          <AssociationSet Name="SkladnikLicznika" Association="Self.SkladnikLicznika">
+            <End Role="Licznik" EntitySet="Licznik" />
+            <End Role="SkladnikTaryfy" EntitySet="SkladnikTaryfy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RozlZEEModelStoreContainer" CdmEntityContainer="RozlZEEEntities">
+          <EntitySetMapping Name="Asortyment">
+            <EntityTypeMapping TypeName="RozlZEEModel.Asortyment">
+              <MappingFragment StoreEntitySet="Asortyment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="IdGrupa" ColumnName="IdGrupa" />
+                <ScalarProperty Name="JakaEnergia" ColumnName="JakaEnergia" />
+                <ScalarProperty Name="StrefaCzasowa" ColumnName="StrefaCzasowa" />
+                <ScalarProperty Name="StalyZmienny" ColumnName="StalyZmienny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cena">
+            <EntityTypeMapping TypeName="RozlZEEModel.Cena">
+              <MappingFragment StoreEntitySet="Cena">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DataOd" ColumnName="DataOd" />
+                <ScalarProperty Name="Cena1" ColumnName="Cena" />
+                <ScalarProperty Name="CenaZima" ColumnName="CenaZima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JednostkaMiary">
+            <EntityTypeMapping TypeName="RozlZEEModel.JednostkaMiary">
+              <MappingFragment StoreEntitySet="JednostkaMiary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Licznik">
+            <EntityTypeMapping TypeName="RozlZEEModel.Licznik">
+              <MappingFragment StoreEntitySet="Licznik">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NrFabryczny" ColumnName="NrFabryczny" />
+                <ScalarProperty Name="Mnozna" ColumnName="Mnozna" />
+                <ScalarProperty Name="TypLicznika" ColumnName="TypLicznika" />
+                <ScalarProperty Name="ProcentStrat" ColumnName="ProcentStrat" />
+                <ScalarProperty Name="Aktywny" ColumnName="Aktywny" />
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Miasto">
+            <EntityTypeMapping TypeName="RozlZEEModel.Miasto">
+              <MappingFragment StoreEntitySet="Miasto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Konto" ColumnName="Konto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MocZamowiona">
+            <EntityTypeMapping TypeName="RozlZEEModel.MocZamowiona">
+              <MappingFragment StoreEntitySet="MocZamowiona">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Miesiac" ColumnName="Miesiac" />
+                <ScalarProperty Name="Rok" ColumnName="Rok" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Obiekt">
+            <EntityTypeMapping TypeName="RozlZEEModel.Obiekt">
+              <MappingFragment StoreEntitySet="Obiekt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Konto" ColumnName="Konto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odbiorca">
+            <EntityTypeMapping TypeName="RozlZEEModel.Odbiorca">
+              <MappingFragment StoreEntitySet="Odbiorca">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NrOdbiorcy" ColumnName="NrOdbiorcy" />
+                <ScalarProperty Name="Konto" ColumnName="Konto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="NrBudynku" ColumnName="NrBudynku" />
+                <ScalarProperty Name="Aktywny" ColumnName="Aktywny" />
+                <ScalarProperty Name="sNazwa" ColumnName="sNazwa" />
+                <ScalarProperty Name="sAdres" ColumnName="sAdres" />
+                <ScalarProperty Name="sKod" ColumnName="sKod" />
+                <ScalarProperty Name="sMiasto" ColumnName="sMiasto" />
+                <ScalarProperty Name="sNIP" ColumnName="sNIP" />
+                <ScalarProperty Name="sBank" ColumnName="sBank" />
+                <ScalarProperty Name="sNrRachunkuBankowego" ColumnName="sNrRachunkuBankowego" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OdczytLicznika">
+            <EntityTypeMapping TypeName="RozlZEEModel.OdczytLicznika">
+              <MappingFragment StoreEntitySet="OdczytLicznika">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DataOdczytu" ColumnName="DataOdczytu" />
+                <ScalarProperty Name="NrFabryczny" ColumnName="NrFabryczny" />
+                <ScalarProperty Name="Stan" ColumnName="Stan" />
+                <ScalarProperty Name="Zuzycie" ColumnName="Zuzycie" />
+                <ScalarProperty Name="PierwszyOdczyt" ColumnName="PierwszyOdczyt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OsrodekKosztow">
+            <EntityTypeMapping TypeName="RozlZEEModel.OsrodekKosztow">
+              <MappingFragment StoreEntitySet="OsrodekKosztow">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="ProcentKosztow" ColumnName="ProcentKosztow" />
+                <ScalarProperty Name="UdzialZuzycia" ColumnName="UdzialZuzycia" />
+                <ScalarProperty Name="KontoKosztuStale" ColumnName="KontoKosztuStale" />
+                <ScalarProperty Name="KontoKosztuZmienne" ColumnName="KontoKosztuZmienne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PozycjaZuzycia">
+            <EntityTypeMapping TypeName="RozlZEEModel.PozycjaZuzycia">
+              <MappingFragment StoreEntitySet="PozycjaZuzycia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+                <ScalarProperty Name="JednostkaMiary" ColumnName="JednostkaMiary" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="idStawkaVAT" ColumnName="idStawkaVAT" />
+                <ScalarProperty Name="StawkaVAT" ColumnName="StawkaVAT" />
+                <ScalarProperty Name="KwotaNetto" ColumnName="KwotaNetto" />
+                <ScalarProperty Name="KwotaVAT" ColumnName="KwotaVAT" />
+                <ScalarProperty Name="KwotaBrutto" ColumnName="KwotaBrutto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Przylacze">
+            <EntityTypeMapping TypeName="RozlZEEModel.Przylacze">
+              <MappingFragment StoreEntitySet="Przylacze">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Mnozna" ColumnName="Mnozna" />
+                <ScalarProperty Name="TangensFiZamowione" ColumnName="TangensFiZamowione" />
+                <ScalarProperty Name="MocMinimalna" ColumnName="MocMinimalna" />
+                <ScalarProperty Name="MocUmowna" ColumnName="MocUmowna" />
+                <ScalarProperty Name="MocZainstalowana" ColumnName="MocZainstalowana" />
+                <ScalarProperty Name="TypTaryfaEBP" ColumnName="TypTaryfaEBP" />
+                <ScalarProperty Name="CzySumator" ColumnName="CzySumator" />
+                <ScalarProperty Name="CzyStraty" ColumnName="CzyStraty" />
+                <ScalarProperty Name="Aktywne" ColumnName="Aktywne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rok">
+            <EntityTypeMapping TypeName="RozlZEEModel.Rok">
+              <MappingFragment StoreEntitySet="Rok">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Numer" ColumnName="Numer" />
+                <ScalarProperty Name="MaskaKosztu" ColumnName="MaskaKosztu" />
+                <ScalarProperty Name="DomyslnyStaly" ColumnName="DomyslnyStaly" />
+                <ScalarProperty Name="DomyslnyZmienny" ColumnName="DomyslnyZmienny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkladnikTaryfy">
+            <EntityTypeMapping TypeName="RozlZEEModel.SkladnikTaryfy">
+              <MappingFragment StoreEntitySet="SkladnikTaryfy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypCeny" ColumnName="TypCeny" />
+                <ScalarProperty Name="BruttoNetto" ColumnName="BruttoNetto" />
+                <ScalarProperty Name="WyliczacKwoty" ColumnName="WyliczacKwoty" />
+                <ScalarProperty Name="KwotaZuzycia" ColumnName="KwotaZuzycia" />
+                <ScalarProperty Name="StalaZmienna" ColumnName="StalaZmienna" />
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StawkaVAT">
+            <EntityTypeMapping TypeName="RozlZEEModel.StawkaVAT">
+              <MappingFragment StoreEntitySet="StawkaVAT">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Wartosc" ColumnName="Wartosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taryfa">
+            <EntityTypeMapping TypeName="RozlZEEModel.Taryfa">
+              <MappingFragment StoreEntitySet="Taryfa">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="IleCzlonow" ColumnName="IleCzlonow" />
+                <ScalarProperty Name="IleStref" ColumnName="IleStref" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypOdbiorcy">
+            <EntityTypeMapping TypeName="RozlZEEModel.TypOdbiorcy">
+              <MappingFragment StoreEntitySet="TypOdbiorcy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ulica">
+            <EntityTypeMapping TypeName="RozlZEEModel.Ulica">
+              <MappingFragment StoreEntitySet="Ulica">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Konto" ColumnName="Konto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zaklad">
+            <EntityTypeMapping TypeName="RozlZEEModel.Zaklad">
+              <MappingFragment StoreEntitySet="Zaklad">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Konto" ColumnName="Konto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zuzycie">
+            <EntityTypeMapping TypeName="RozlZEEModel.Zuzycie">
+              <MappingFragment StoreEntitySet="Zuzycie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DataOdczytu" ColumnName="DataOdczytu" />
+                <ScalarProperty Name="DoZaplatyNetto" ColumnName="DoZaplatyNetto" />
+                <ScalarProperty Name="DoZaplatyVAT" ColumnName="DoZaplatyVAT" />
+                <ScalarProperty Name="DoZaplatyBrutto" ColumnName="DoZaplatyBrutto" />
+                <ScalarProperty Name="EnergiaCzynnaRazem" ColumnName="EnergiaCzynnaRazem" />
+                <ScalarProperty Name="EergiaBiernaPobranaRazem" ColumnName="EergiaBiernaPobranaRazem" />
+                <ScalarProperty Name="EnergiaBiernaOddanaRazem" ColumnName="EnergiaBiernaOddanaRazem" />
+                <ScalarProperty Name="ZwrotyBonifikaty" ColumnName="ZwrotyBonifikaty" />
+                <ScalarProperty Name="Zaliczka" ColumnName="Zaliczka" />
+                <ScalarProperty Name="CzasMocyMaksymalnej" ColumnName="CzasMocyMaksymalnej" />
+                <ScalarProperty Name="CenaSrednia" ColumnName="CenaSrednia" />
+                <ScalarProperty Name="TangensFi" ColumnName="TangensFi" />
+                <ScalarProperty Name="PowodKorekty" ColumnName="PowodKorekty" />
+                <ScalarProperty Name="CzyKorekta" ColumnName="CzyKorekta" />
+                <ScalarProperty Name="DataKorekty" ColumnName="DataKorekty" />
+                <ScalarProperty Name="NrFaktury" ColumnName="NrFaktury" />
+                <ScalarProperty Name="NettoFaktury" ColumnName="NettoFaktury" />
+                <ScalarProperty Name="VATFaktury" ColumnName="VATFaktury" />
+                <ScalarProperty Name="BruttoFaktury" ColumnName="BruttoFaktury" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_PozycjaZuzycia_ToAsortyment" TypeName="RozlZEEModel.FK_PozycjaZuzycia_ToAsortyment" StoreEntitySet="PozycjaZuzycia">
+            <EndProperty Name="Asortyment">
+              <ScalarProperty Name="Id" ColumnName="idAsortyment" />
+            </EndProperty>
+            <EndProperty Name="PozycjaZuzycia">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_SkladnikTaryfy_ToAsortyment" TypeName="RozlZEEModel.FK_SkladnikTaryfy_ToAsortyment" StoreEntitySet="SkladnikTaryfy">
+            <EndProperty Name="Asortyment">
+              <ScalarProperty Name="Id" ColumnName="idAsortyment" />
+            </EndProperty>
+            <EndProperty Name="SkladnikTaryfy">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Cena_ToSkladnikTaryfy" TypeName="RozlZEEModel.FK_Cena_ToSkladnikTaryfy" StoreEntitySet="Cena">
+            <EndProperty Name="SkladnikTaryfy">
+              <ScalarProperty Name="Id" ColumnName="idSkladnikTaryfy" />
+            </EndProperty>
+            <EndProperty Name="Cena">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Cena_ToStawkaVAT" TypeName="RozlZEEModel.FK_Cena_ToStawkaVAT" StoreEntitySet="Cena">
+            <EndProperty Name="StawkaVAT">
+              <ScalarProperty Name="Id" ColumnName="idStawkaVAT" />
+            </EndProperty>
+            <EndProperty Name="Cena">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="idStawkaVAT" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_SkladnikTaryfy_ToJednostkaMiary" TypeName="RozlZEEModel.FK_SkladnikTaryfy_ToJednostkaMiary" StoreEntitySet="SkladnikTaryfy">
+            <EndProperty Name="JednostkaMiary">
+              <ScalarProperty Name="Id" ColumnName="idJednostkaMiary" />
+            </EndProperty>
+            <EndProperty Name="SkladnikTaryfy">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Licznik_ToPrzylacze" TypeName="RozlZEEModel.FK_Licznik_ToPrzylacze" StoreEntitySet="Licznik">
+            <EndProperty Name="Przylacze">
+              <ScalarProperty Name="Id" ColumnName="idPrzylacze" />
+            </EndProperty>
+            <EndProperty Name="Licznik">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="idPrzylacze" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_OdczytLicznika_ToLicznik" TypeName="RozlZEEModel.FK_OdczytLicznika_ToLicznik" StoreEntitySet="OdczytLicznika">
+            <EndProperty Name="Licznik">
+              <ScalarProperty Name="Id" ColumnName="idLicznik" />
+            </EndProperty>
+            <EndProperty Name="OdczytLicznika">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Odbiorca_ToMiasto" TypeName="RozlZEEModel.FK_Odbiorca_ToMiasto" StoreEntitySet="Odbiorca">
+            <EndProperty Name="Miasto">
+              <ScalarProperty Name="Id" ColumnName="idMiasto" />
+            </EndProperty>
+            <EndProperty Name="Odbiorca">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="idMiasto" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_MocZamowiona_ToPrzylacze" TypeName="RozlZEEModel.FK_MocZamowiona_ToPrzylacze" StoreEntitySet="MocZamowiona">
+            <EndProperty Name="Przylacze">
+              <ScalarProperty Name="Id" ColumnName="idPrzylacze" />
+            </EndProperty>
+            <EndProperty Name="MocZamowiona">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Odbiorca_ToObiekt" TypeName="RozlZEEModel.FK_Odbiorca_ToObiekt" StoreEntitySet="Odbiorca">
+            <EndProperty Name="Obiekt">
+              <ScalarProperty Name="Id" ColumnName="idObiekt" />
+            </EndProperty>
+            <EndProperty Name="Odbiorca">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="idObiekt" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Odbiorca_ToTypOdbiorcy" TypeName="RozlZEEModel.FK_Odbiorca_ToTypOdbiorcy" StoreEntitySet="Odbiorca">
+            <EndProperty Name="TypOdbiorcy">
+              <ScalarProperty Name="Id" ColumnName="idTypOdbiorcy" />
+            </EndProperty>
+            <EndProperty Name="Odbiorca">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="idTypOdbiorcy" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Odbiorca_ToUlica" TypeName="RozlZEEModel.FK_Odbiorca_ToUlica" StoreEntitySet="Odbiorca">
+            <EndProperty Name="Ulica">
+              <ScalarProperty Name="Id" ColumnName="idUlica" />
+            </EndProperty>
+            <EndProperty Name="Odbiorca">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="idUlica" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Odbiorca_ToZaklad" TypeName="RozlZEEModel.FK_Odbiorca_ToZaklad" StoreEntitySet="Odbiorca">
+            <EndProperty Name="Zaklad">
+              <ScalarProperty Name="Id" ColumnName="idZaklad" />
+            </EndProperty>
+            <EndProperty Name="Odbiorca">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="idZaklad" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Przylacze_ToOdbiorca" TypeName="RozlZEEModel.FK_Przylacze_ToOdbiorca" StoreEntitySet="Przylacze">
+            <EndProperty Name="Odbiorca">
+              <ScalarProperty Name="Id" ColumnName="idOdbiorca" />
+            </EndProperty>
+            <EndProperty Name="Przylacze">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_OsrodekKosztow_ToPrzylacze" TypeName="RozlZEEModel.FK_OsrodekKosztow_ToPrzylacze" StoreEntitySet="OsrodekKosztow">
+            <EndProperty Name="Przylacze">
+              <ScalarProperty Name="Id" ColumnName="idPrzylacze" />
+            </EndProperty>
+            <EndProperty Name="OsrodekKosztow">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_OsrodekKosztow_ToRok" TypeName="RozlZEEModel.FK_OsrodekKosztow_ToRok" StoreEntitySet="OsrodekKosztow">
+            <EndProperty Name="Rok">
+              <ScalarProperty Name="Id" ColumnName="idRok" />
+            </EndProperty>
+            <EndProperty Name="OsrodekKosztow">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_PozycjaZuzycia_ToSkladnikTaryfy" TypeName="RozlZEEModel.FK_PozycjaZuzycia_ToSkladnikTaryfy" StoreEntitySet="PozycjaZuzycia">
+            <EndProperty Name="SkladnikTaryfy">
+              <ScalarProperty Name="Id" ColumnName="idSkladnikTaryfy" />
+            </EndProperty>
+            <EndProperty Name="PozycjaZuzycia">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_PozycjaZuzycia_ToZuzycie" TypeName="RozlZEEModel.FK_PozycjaZuzycia_ToZuzycie" StoreEntitySet="PozycjaZuzycia">
+            <EndProperty Name="Zuzycie">
+              <ScalarProperty Name="Id" ColumnName="idZuzycie" />
+            </EndProperty>
+            <EndProperty Name="PozycjaZuzycia">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Przylacze_ToTaryfa" TypeName="RozlZEEModel.FK_Przylacze_ToTaryfa" StoreEntitySet="Przylacze">
+            <EndProperty Name="Taryfa">
+              <ScalarProperty Name="Id" ColumnName="idTaryfa" />
+            </EndProperty>
+            <EndProperty Name="Przylacze">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Zuzycie_ToPrzylacze" TypeName="RozlZEEModel.FK_Zuzycie_ToPrzylacze" StoreEntitySet="Zuzycie">
+            <EndProperty Name="Przylacze">
+              <ScalarProperty Name="Id" ColumnName="idPrzylacze" />
+            </EndProperty>
+            <EndProperty Name="Zuzycie">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_SkladnikTaryfy_ToTaryfa" TypeName="RozlZEEModel.FK_SkladnikTaryfy_ToTaryfa" StoreEntitySet="SkladnikTaryfy">
+            <EndProperty Name="Taryfa">
+              <ScalarProperty Name="Id" ColumnName="idTaryfa" />
+            </EndProperty>
+            <EndProperty Name="SkladnikTaryfy">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Zuzycie_ToTaryfa" TypeName="RozlZEEModel.FK_Zuzycie_ToTaryfa" StoreEntitySet="Zuzycie">
+            <EndProperty Name="Taryfa">
+              <ScalarProperty Name="Id" ColumnName="idTaryfa" />
+            </EndProperty>
+            <EndProperty Name="Zuzycie">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SkladnikLicznika" TypeName="RozlZEEModel.SkladnikLicznika" StoreEntitySet="SkladnikLicznika">
+            <EndProperty Name="Licznik">
+              <ScalarProperty Name="Id" ColumnName="idLicznik" />
+            </EndProperty>
+            <EndProperty Name="SkladnikTaryfy">
+              <ScalarProperty Name="Id" ColumnName="idSkladnikTaryfy" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

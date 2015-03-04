@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="492f6719e4954880ac352c73d60717ef" Name="Diagram1">
+        <EntityTypeShape EntityType="RozlZEEModel.Asortyment" Width="1.5" PointX="8.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Cena" Width="1.5" PointX="12.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.JednostkaMiary" Width="1.5" PointX="8.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Licznik" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Miasto" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.MocZamowiona" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Obiekt" Width="1.5" PointX="1.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Odbiorca" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.OdczytLicznika" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.OsrodekKosztow" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.PozycjaZuzycia" Width="1.5" PointX="12.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Przylacze" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Rok" Width="1.5" PointX="6" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.SkladnikTaryfy" Width="1.5" PointX="10.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.StawkaVAT" Width="1.5" PointX="10.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Taryfa" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.TypOdbiorcy" Width="1.5" PointX="1.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Ulica" Width="1.5" PointX="1.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Zaklad" Width="1.5" PointX="1.5" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozlZEEModel.Zuzycie" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="RozlZEEModel.FK_PozycjaZuzycia_ToAsortyment" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_SkladnikTaryfy_ToAsortyment" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Cena_ToSkladnikTaryfy" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Cena_ToStawkaVAT" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_SkladnikTaryfy_ToJednostkaMiary" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Licznik_ToPrzylacze" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_OdczytLicznika_ToLicznik" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Odbiorca_ToMiasto" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_MocZamowiona_ToPrzylacze" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Odbiorca_ToObiekt" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Odbiorca_ToTypOdbiorcy" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Odbiorca_ToUlica" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Odbiorca_ToZaklad" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Przylacze_ToOdbiorca" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_OsrodekKosztow_ToPrzylacze" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_OsrodekKosztow_ToRok" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_PozycjaZuzycia_ToSkladnikTaryfy" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_PozycjaZuzycia_ToZuzycie" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Przylacze_ToTaryfa" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Zuzycie_ToPrzylacze" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_SkladnikTaryfy_ToTaryfa" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.FK_Zuzycie_ToTaryfa" ManuallyRouted="false" />
+        <AssociationConnector Association="RozlZEEModel.SkladnikLicznika" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
