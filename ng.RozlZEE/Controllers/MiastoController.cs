@@ -19,6 +19,8 @@ namespace ng.RozlZEE.Controllers
         private RozlZEEEntities db = new RozlZEEEntities();
 
         // GET: api/Miasto
+        [HttpGet]
+        [Authorize]
         public IQueryable<Miasto> GetMiasto()
         {
             return db.Miasto;

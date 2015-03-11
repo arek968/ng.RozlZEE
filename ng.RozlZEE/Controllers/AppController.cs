@@ -29,5 +29,12 @@ namespace ng.RozlZEE.Controllers
         {
             return PartialView();
         }
+
+        // widoki biznesowe RozlZEE
+        [Authorize]
+        public ActionResult MiastoList()
+        {
+            return PartialView();
+        }
     }
 }

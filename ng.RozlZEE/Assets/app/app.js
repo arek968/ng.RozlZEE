@@ -4,7 +4,8 @@
     'home',
     'signIn',
     'register',
-    'todoManager'
+    'todoManager',
+    'miastoList'
 ]);
 
 
@@ -54,6 +55,10 @@ app.config(['$provide', '$routeProvider', '$httpProvider', function ($provide, $
     $routeProvider.when('/todomanager', {
         templateUrl: 'App/TodoManager',
         controller: 'todoManagerCtrl'
+    });
+    $routeProvider.when('/miastoList', {
+        templateUrl: 'App/MiastoList',
+        controller: 'miastoListCtrl'
     });
     
     $routeProvider.otherwise({
