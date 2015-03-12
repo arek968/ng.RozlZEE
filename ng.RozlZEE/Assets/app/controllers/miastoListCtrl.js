@@ -1,12 +1,29 @@
-﻿angular.module('miastoList', [])
-    .controller('miastoListCtrl', ['$scope', '$http', function ($scope, $http) {
+﻿/*
+angular.module('miastoList', [])
+    .controller('miastoListCtrl', function ($scope, $http) {
+    alert(1);
+    $http.get('api/Miasto/GetMiasto').success(function (data) {
+        
+        $scope.miasta = data;
+        alert(data);
+    });
+        
+});
 
+*/
+
+angular.module('miastoList', [])
+    .controller('miastoListCtrl', ['$scope', '$http', function ($scope, $http) {
+        alert(1);
         $scope.getList = function () {
-            $http.get('/api/MiastoController/get')
+            alert(2);
+            $http.get('/api/Miasto/GetMiasto')
                 .success(function (data, status, headers, config) {
+                    alert(data);
                     $scope.miasta = data;
                 });
         }
+ 
         /*
         $scope.postItem = function () {
             item =
