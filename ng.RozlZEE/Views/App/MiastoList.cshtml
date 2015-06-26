@@ -6,14 +6,15 @@
            
             <ul class="list-group margin-top-5">
                 <li ng-repeat="item in miasta" class="list-group-item">
-                    Nazwa: {{item.Nazwa}}
+                    <a href="#/MiastoUpdate/{{miasto.id}}"> {{item.Nazwa}} </a> 
+                    <p>Konto: {{item.Konto}}</p>
                 </li>
             </ul>
 
             
 
         </div>
-        <pre> {{10+10}}</pre>
+        
     </div>
 
-<pre>{{11 + 11}} AAA</pre>
+<pre>ng {{11+11}}</pre>

@@ -36,5 +36,10 @@ namespace ng.RozlZEE.Controllers
         {
             return PartialView();
         }
+        [Authorize]
+        public ActionResult MiastoUpdate()
+        {
+            return PartialView();
+        }
     }
 }

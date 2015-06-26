@@ -40,6 +40,7 @@ app.config(['$provide', '$routeProvider', '$httpProvider', function ($provide, $
     //================================================
     // Routes
     //================================================
+    
     $routeProvider.when('/home', {
         templateUrl: 'App/Home',
         controller: 'homeCtrl'
@@ -59,6 +60,10 @@ app.config(['$provide', '$routeProvider', '$httpProvider', function ($provide, $
     $routeProvider.when('/miastoList', {
         templateUrl: 'App/MiastoList',
         controller: 'miastoListCtrl'
+    });
+    $routeProvider.when('/miastoUpdate/:miastoId', {
+        templateUrl: 'App/MiastoUpdate',
+        controller: 'MiastoUpdateCtrl'
     });
     
     $routeProvider.otherwise({

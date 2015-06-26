@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ng.RozlZEE.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace ng.RozlZEE.Controllers
 {
@@ -18,11 +20,22 @@ namespace ng.RozlZEE.Controllers
     {
         private RozlZEEEntities db = new RozlZEEEntities();
 
+
+        //mongo db tests
+        public void MongoDB()
+        {
+            var connectionString = "mongodb://localhost";
+            var client = new MongoClient(connectionString);
+            
+
+        }
+        
         // GET: api/Miasto
         [HttpGet]
         [Authorize]
         public IQueryable<Miasto> GetMiasto()
         {
+
             return db.Miasto;
         }
 

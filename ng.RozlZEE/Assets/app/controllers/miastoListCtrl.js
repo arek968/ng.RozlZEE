@@ -12,14 +12,27 @@ angular.module('miastoList', [])
 
 */
 
+angular.module('miastoUpdate', [])
+    .controller("MiastoUpdateCtrl",
+    function ($scope, Miasto) {
+        alert(1);
+        Miasto.get({ id: 1 }, function (data) {
+            $scope.miasto = data;
+        });
+
+
+});
+    
+
+
 angular.module('miastoList', [])
     .controller('miastoListCtrl', ['$scope', '$http', function ($scope, $http) {
-        alert(1);
+        //alert(1);
         $scope.getList = function () {
-            alert(2);
+            //alert(2);
             $http.get('/api/Miasto/GetMiasto')
                 .success(function (data, status, headers, config) {
-                    alert(data);
+                    //alert(data);
                     $scope.miasta = data;
                 });
         }
